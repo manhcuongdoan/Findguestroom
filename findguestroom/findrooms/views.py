@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, This is findrooms app")
+    return render(request, 'index.html')
