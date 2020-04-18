@@ -1,14 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Room
-# Create your views here.
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
+@api_view(['GET', 'POST'])
+def index(request):    
+   return Response({"message" : "Hello world!"})
 
-def index(request):
-    room_list = Room.objects.all()
-    context = {
-        'room_list': room_list,
-    }
-
-
-    return render(request, 'index.html', context=context)
