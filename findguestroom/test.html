@@ -1,0 +1,37 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+   function getRooms() {
+       
+       $.ajax(
+           {    
+               url: "http://127.0.0.1:8000/findrooms/all",
+               
+               success: function(result){
+                   var html = `<table border='1'>
+                                   <tr>
+                                       <th>Title</th>
+                                       <th>Room Image</th>
+                                       <th>Address</th>
+                                       <th>Price</th>
+                                   </tr>`;
+                   
+                   for(var i = 0; i < result.length; i++) {
+                       html += `<tr>
+                                   <td>${result[i].title}</td>
+                                   <td>${result[i].room_image}</td>
+                                   <td>${result[i].address}</td>
+                                   <td>${result[i].price}</td>
+                               </tr>`;                        
+                   }
+                   html += `</table>`;
+                   
+                   $('#content').html(html);
+               },
+           }
+       );    
+   }    
+</script>
+
+<input type='button' value='Get Rooms' onclick='getRooms()'/>
+<br><br>
+<div id='content'></div>
