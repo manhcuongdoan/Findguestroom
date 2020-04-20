@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<body style='display:none'>
+   <div class='container'>
+       Hello , you have logged in.    
+       <br>    
+       <div class="text-right">
+           <a href='javascript:logOut()'>Log out</a>
+       </div>
+       <input type='button' class='btn-primary' value='Test API' onclick='testAPI()'>    
+       <br><br>
+       <div id='content'></div>
+   </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+   $(document).ready(function(){
+       if(!sessionStorage.getItem('access_token') || !sessionStorage.getItem('refresh_token')) {
+           window.location.href = 'login.html';
+       }else{
+           $('body').show();
+       }
+   });
+   
+   
+   function logOut() {
+       sessionStorage.removeItem('access_token');
+       sessionStorage.removeItem('refresh_token');
+       window.location.href = 'login.html';
+   }
+   
+   function refreshToken() {
+       var data = JSON.stringify({'refresh' : sessionStorage.getItem('refresh_token')});
+       
+       $.ajax(
+           {    
+               url: "http://localhost:8000/api/token/refresh",
+               data : data,
+               dataType : "json",
+               method : "POST",
+               contentType: "application/json; charset=utf-8",
+               
+               success: function(result){
+                   sessionStorage.setItem('access_token', result['access']);                    
+               },
+               
+               error: function (error) {
+                   $('#errMsg').html('Incorrect username or password');
+               }                
+           }
+       );
+   }
+   
+   function testAPI() {
+       $.ajax(
+           {    
+               url: "http://localhost:8000/findrooms/all",
+               
+               beforeSend: function(request) {                    
+                   request.setRequestHeader("Authorization", 'Bearer ' + sessionStorage.getItem('access_token'));
+               },
+               
+               success: function(result){
+                   $('#content').html(JSON.stringify(result));
+               },
+               
+               error: function (error) {
+                   $('#content').html('Error :' + error.responseText);
+                   refreshToken();
+               }                
+           }
+       );
+   }
+</script>
