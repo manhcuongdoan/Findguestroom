@@ -1,5 +1,15 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-  <title>Tìm nhà trọ, cho thuê nhà trọ</title>
+  <title>Tìm nhà trọ | Cho thuê nhà trọ</title>
+{% endblock %}
+
+{% block content %}
+  <p>Trang nhà tìm nhà trọ, cho thuê nhà trọ</p>
+  <p>Trang có lượng dữ liệu như sau:</p>
+  <ul>
+    <li>Chủ nhà: {{ num_house_owners }}</li>
+    <li>Tin đăng cho thuê nhà: {{ num_house_ads }}</li>
+  </ul>
+  <p>Bạn đã truy cập trang này {{ num_visits }} lần.</p>
 {% endblock %}
