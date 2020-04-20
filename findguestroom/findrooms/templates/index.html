@@ -22,7 +22,7 @@
           <p>Địa chỉ: {{ house_ad.locationDetail }}, {{ house_ad.district }}, {{ house_ad.province }}</p>
           <p>Giá hàng tháng: {{ house_ad.price }} vnd</p>
           <p>Diện tích: {{ house_ad.area }} mét vuông</p>
-          <p>Ảnh nhà: {{ house_ad.livingroomImage.url  }}
+          <p>Ảnh nhà:
             {% load static %}
             <img src="{{ house_ad.livingroomImage.url }}" width="30%" alt="ảnh phòng chính">
           </p>
