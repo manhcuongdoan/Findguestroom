@@ -106,7 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': [
+       'rest_framework_simplejwt.authentication.JWTAuthentication',
+   ],
+}
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -138,7 +142,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
 
-    "http://localhost:8080",
+    "http://localhost:8000",
     "http://127.0.0.1:9000",
     "http://127.0.0.1:8000",
 )
