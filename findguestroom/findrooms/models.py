@@ -58,16 +58,16 @@ class HouseAd(models.Model):
     area = models.IntegerField(help_text="Tổng diện tích cho thuê \
                                 (phòng ngủ, vệ sinh, ...) bằng mét vuông")
     # bed room image < 10 MB
-    livingroomImage = models.ImageField(upload_to=settings.MEDIA_ROOT)
+    livingroomImage = models.ImageField(upload_to="findrooms/media")
 
-    # bathroom or restroom image < 10 MB
-    bathroomImage = models.ImageField(upload_to=settings.MEDIA_ROOT)
-
-    # other images maximum 4 < 10 MB per image
-    houseImage1 = models.ImageField(upload_to=settings.MEDIA_ROOT)
-    houseImage2 = models.ImageField(upload_to=settings.MEDIA_ROOT)
-    houseImage3 = models.ImageField(upload_to=settings.MEDIA_ROOT)
-    houseImage4 = models.ImageField(upload_to=settings.MEDIA_ROOT)
+    # # bathroom or restroom image < 10 MB
+    # bathroomImage = models.ImageField(upload_to=settings.MEDIA_ROOT, blank=True)
+    #
+    # # other images maximum 4 < 10 MB per image
+    # houseImage1 = models.ImageField(upload_to=settings.MEDIA_ROOT, blank=True)
+    # houseImage2 = models.ImageField(upload_to=settings.MEDIA_ROOT, blank=True)
+    # houseImage3 = models.ImageField(upload_to=settings.MEDIA_ROOT, blank=True)
+    # houseImage4 = models.ImageField(upload_to=settings.MEDIA_ROOT, blank=True)
 
     content = models.TextField(max_length=1000,
                             help_text="Miêu tả cụ thể nội dung nhà bạn cho thuê")

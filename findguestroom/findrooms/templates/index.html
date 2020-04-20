@@ -24,7 +24,7 @@
           <p>Diện tích: {{ house_ad.area }} mét vuông</p>
           <p>Ảnh nhà: {{ house_ad.livingroomImage.url  }}
             {% load static %}
-            <img src="{{ house_ad.livingroomImage.url }}" alt="ảnh phòng chính">
+            <img src="{{ house_ad.livingroomImage.url }}" width="30%" alt="ảnh phòng chính">
           </p>
       </li>
     {% endfor %}
