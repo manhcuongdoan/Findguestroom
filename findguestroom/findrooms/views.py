@@ -16,11 +16,15 @@ def index(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
+    house_ads = HouseAd.objects.all()[:10]
+
     context = {
         'num_house_ads': num_house_ads,
         'num_house_owners': num_house_owners,
         'num_visits': num_visits,
+        'house_ads': house_ads,
     }
+    
     return render(request, 'index.html', context=context)
 
 def about(request):

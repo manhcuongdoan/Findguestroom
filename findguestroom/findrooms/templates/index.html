@@ -12,4 +12,21 @@
     <li>Tin đăng cho thuê nhà: {{ num_house_ads }}</li>
   </ul>
   <p>Bạn đã truy cập trang này {{ num_visits }} lần.</p>
+
+  <p>Các tin đăng cho thuê nhà:</p>
+  <ul>
+    {% for house_ad in house_ads %}
+      <li>
+          <h4>{{ house_ad.title }}</h4>
+          <p>Người cho thuê: {{ house_ad.houseOwner }}</p>
+          <p>Địa chỉ: {{ house_ad.locationDetail }}, {{ house_ad.district }}, {{ house_ad.province }}</p>
+          <p>Giá hàng tháng: {{ house_ad.price }} vnd</p>
+          <p>Diện tích: {{ house_ad.area }} mét vuông</p>
+          <p>Ảnh nhà: {{ house_ad.livingroomImage.url  }}
+            {% load static %}
+            <img src="{{ house_ad.livingroomImage.url }}" alt="ảnh phòng chính">
+          </p>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
