@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  <title>Tìm nhà trọ | Cho thuê nhà trọ</title>
+{% endblock %}
+
+{% block content %}
+  <p>Trang nhà tìm nhà trọ, cho thuê nhà trọ</p>
+  <p>Trang có lượng dữ liệu như sau:</p>
+  <ul>
+    <li>Chủ nhà: {{ num_users }}</li>
+    <li>Tin đăng cho thuê nhà: {{ num_house_ads }}</li>
+  </ul>
+  <p>Bạn đã truy cập trang này {{ num_visits }} lần.</p>
+
+  <p>Các tin đăng cho thuê nhà:</p>
+  <ul>
+    {% for house_ad in house_ads %}
+      <li>
+          <h4>{{ house_ad.title }}</h4>
+          <p>Người cho thuê: {{ house_ad.user }}</p>
+          <p>Địa chỉ: {{ house_ad.locationDetail }}, {{ house_ad.district }}, {{ house_ad.province }}</p>
+          <p>Giá hàng tháng: {{ house_ad.price }} vnd</p>
+          <p>Diện tích: {{ house_ad.area }} mét vuông</p>
+          <p>Ảnh nhà:
+            {% load static %}
+            <img src="{{ house_ad.livingroomImage.url }}" width="50%" alt="ảnh phòng chính">
+          </p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
