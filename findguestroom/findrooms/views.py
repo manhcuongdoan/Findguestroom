@@ -50,4 +50,4 @@ class HouseAdsByHouseOwnerListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return HouseAd.objects.filter(houseOwner=self.request.user).order_by('title')
+        return HouseAd.objects.filter(user=self.request.user).order_by('title')

@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Danh sách tin cho thuê của tôi</h1>
+
+    {% if housead_list %}
+    <ul>
+
+      {% for housead in housead_list %}
+      <li>
+        <ul>
+          <h4>{{ housead.title }}</h4>
+          <li>Địa chỉ: {{housead.locationDetail}},
+              {{housead.district}}, {{housead.province}}</li>
+          <li>Giá thuê hàng tháng: {{housead.price}} (vnd)</li>
+          <li>Diện tích cho thuê: {{housead.area}} mét vuông</li>
+          <li>{{housead.content}}</li>
+          <img src="{{housead.livingroomImage.url}}" alt="" width="80%"></img>
+        </ul>
+
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>Không có tin cho thuê nào của tôi.</p>
+    {% endif %}
+{% endblock %}
