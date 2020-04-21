@@ -4,6 +4,9 @@ import json
 # Create your views here.
 
 from findrooms.models import HouseAd, HouseOwner
+from django.contrib.auth.mixins import LoginRequiredMixin, \
+                                    PermissionRequiredMixin
+from django.views import generic
 # about = {"about": "this is about page"}
 # contact = ""
 
@@ -24,7 +27,7 @@ def index(request):
         'num_visits': num_visits,
         'house_ads': house_ads,
     }
-    
+
     return render(request, 'index.html', context=context)
 
 def about(request):
@@ -35,3 +38,13 @@ def about(request):
 def contact(request):
     contact = {"contact": "contact page"}
     return JsonResponse(contact)
+
+
+class HouseAdsByHouseOwnerListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing house ads of a specific house owner account """
+    model = HouseAd
+    template_name = 'findrooms/housead_list_houseowner_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return HouseAd.objects.filter(houseOwner=self.request.user).order_by('title')
