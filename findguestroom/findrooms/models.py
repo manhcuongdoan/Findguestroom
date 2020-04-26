@@ -50,6 +50,9 @@ class HouseAd(models.Model):
     def __str__(self):
         return self.title
 
+    def get_formatted_price(self):
+        return f'{self.price:,}'
+
     def get_absolute_url(self):
         """ Returns the url to access a house ad instance"""
         return reverse('houseAd-detail', args=[str(self.id)])

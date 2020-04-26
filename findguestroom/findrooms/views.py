@@ -32,15 +32,18 @@ def index(request):
     }
 
     return render(request, 'index.html', context=context)
+    # return render(request, 'index.html')
 
 def about(request):
     # return render(request, 'about.html')
-    about = {"about": "about page"}
-    return JsonResponse(about)
+    # about = {"about": "about page"}
+    # return JsonResponse(about)
+    return render(request, 'about.html')
 
 def contact(request):
-    contact = {"contact": "contact page"}
-    return JsonResponse(contact)
+    # contact = {"contact": "contact page"}
+    # return JsonResponse(contact)
+    return render(request, 'contact.html')
 
 
 class HouseAdsByHouseOwnerListView(LoginRequiredMixin, generic.ListView):
